@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="1b2666bb-0435-479c-bc59-ea323193e781" name="node65 skolsky" url="http://node65.webte.fei.stuba.sk">
+        <fileTransfer rootFolder="/var/www/node65.webte.fei.stuba.sk" accessType="SFTP" host="node65.webte.fei.stuba.sk" port="22" sshConfigId="f6680407-15fd-4846-b06d-521d0f6b1ba5" sshConfig="xkoprdam@node65.webte.fei.stuba.sk:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
