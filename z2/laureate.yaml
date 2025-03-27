@@ -1,0 +1,306 @@
+openapi: 3.0.0
+info:
+  title: 'Laureate API'
+  version: 1.0.0
+paths:
+  /laureates:
+    get:
+      tags:
+        - Laureates
+      summary: 'Get all laureates'
+      operationId: 936f639d53ecfb6afcb921ed30880e84
+      responses:
+        '200':
+          description: 'List of all laureates'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties: { id: { type: integer }, fullname: { type: string, nullable: true }, organisation: { type: string, nullable: true }, sex: { type: string, nullable: true }, birth_year: { type: integer, nullable: true }, death_year: { type: integer, nullable: true }, country: { type: string, nullable: true } }
+                  type: object
+        '500':
+          description: 'Server error'
+          content:
+            application/json:
+              schema:
+                properties:
+                  error: { type: string }
+                type: object
+  '/laureates/{id}':
+    get:
+      tags:
+        - Laureates
+      summary: 'Get a specific laureate by ID'
+      operationId: 8cb55c4ea858c47310df2aa6c6686ffe
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Laureate ID'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Laureate details'
+          content:
+            application/json:
+              schema:
+                properties:
+                  id: { type: integer }
+                  fullname: { type: string, nullable: true }
+                  organisation: { type: string, nullable: true }
+                  sex: { type: string, nullable: true }
+                  birth_year: { type: integer, nullable: true }
+                  death_year: { type: integer, nullable: true }
+                  country: { type: string, nullable: true }
+                type: object
+        '404':
+          description: 'Laureate not found'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string }
+                type: object
+        '500':
+          description: 'Server error'
+          content:
+            application/json:
+              schema:
+                properties:
+                  error: { type: string }
+                type: object
+    put:
+      tags:
+        - Laureates
+      summary: 'Update an existing laureate'
+      operationId: cf894f8b803b491397bd4ca31d89977b
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Laureate ID'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                fullname:
+                  type: string
+                  nullable: true
+                organisation:
+                  type: string
+                  nullable: true
+                sex:
+                  type: string
+                  nullable: true
+                birth_year:
+                  type: integer
+                  nullable: true
+                death_year:
+                  type: integer
+                  nullable: true
+                country:
+                  type: string
+                  nullable: true
+              type: object
+      responses:
+        '200':
+          description: 'Laureate updated successfully'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string }
+                type: object
+        '400':
+          description: 'Bad request'
+          content:
+            application/json:
+              schema:
+                properties:
+                  error: { type: string }
+                type: object
+    delete:
+      tags:
+        - Laureates
+      summary: 'Delete a laureate and associated prizes'
+      operationId: a634e3846127c01a0e331f58eea2be86
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Laureate ID'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: 'Laureate deleted successfully'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string }
+                type: object
+        '400':
+          description: 'Bad request'
+          content:
+            application/json:
+              schema:
+                properties:
+                  error: { type: string }
+                type: object
+        '404':
+          description: 'Laureate not found'
+          content:
+            application/json:
+              schema:
+                properties:
+                  error: { type: string }
+                type: object
+  /laureates/getId:
+    get:
+      tags:
+        - Laureates
+      summary: 'Get laureate ID by fullname or organisation'
+      operationId: d96ebd0af8dbfab245ebeb7ca833371d
+      parameters:
+        -
+          name: fullname
+          in: query
+          description: 'Full name of the laureate'
+          required: false
+          schema:
+            type: string
+        -
+          name: organisation
+          in: query
+          description: 'Organisation name of the laureate'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Laureate ID or null if not found'
+          content:
+            application/json:
+              schema:
+                properties:
+                  id: { type: integer, nullable: true }
+                type: object
+        '500':
+          description: 'Server error'
+          content:
+            application/json:
+              schema:
+                properties:
+                  error: { type: string }
+                type: object
+  /prizes:
+    get:
+      tags:
+        - Prizes
+      summary: 'Get all laureates with their prize details'
+      operationId: 635247d7f03de5c725843596b91c9a84
+      parameters:
+        -
+          name: category
+          in: query
+          description: 'Filter by prize category'
+          required: false
+          schema:
+            type: string
+        -
+          name: year
+          in: query
+          description: 'Filter by prize year'
+          required: false
+          schema:
+            type: integer
+        -
+          name: country
+          in: query
+          description: 'Filter by laureate country'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'List of laureates with prize details'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties: { laureate_id: { type: integer }, laureate: { type: string }, fullname: { type: string, nullable: true }, organisation: { type: string, nullable: true }, country: { type: string, nullable: true }, year: { type: integer }, category: { type: string }, contribution_sk: { type: string, nullable: true } }
+                  type: object
+        '500':
+          description: 'Server error'
+          content:
+            application/json:
+              schema:
+                properties:
+                  error: { type: string }
+                type: object
+  /laureate:
+    post:
+      tags:
+        - Laureates
+      summary: 'Create a new laureate'
+      operationId: 421257a4c6cd9d8b0193697e836a8071
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                sex:
+                  type: string
+                  nullable: true
+                birth_year:
+                  type: integer
+                  nullable: true
+                death_year:
+                  type: integer
+                  nullable: true
+                country:
+                  type: string
+                  nullable: true
+                fullname:
+                  type: string
+                  nullable: true
+                organisation:
+                  type: string
+                  nullable: true
+              type: object
+      responses:
+        '201':
+          description: 'Laureate created successfully'
+          content:
+            application/json:
+              schema:
+                properties:
+                  id: { type: integer }
+                type: object
+        '400':
+          description: 'Bad request'
+          content:
+            application/json:
+              schema:
+                properties:
+                  error: { type: string }
+                type: object
+tags:
+  -
+    name: Laureates
+    description: Laureates
+  -
+    name: Prizes
+    description: Prizes

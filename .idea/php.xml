@@ -35,9 +35,39 @@
       <path value="$PROJECT_DIR$/z1/vendor/firebase/php-jwt" />
       <path value="$PROJECT_DIR$/z1/vendor/ralouphie/getallheaders" />
       <path value="$PROJECT_DIR$/z1/vendor/google/auth" />
+      <path value="$PROJECT_DIR$/z2/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/z2/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/z2/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/z2/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/z2/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/z2/vendor/bacon/bacon-qr-code" />
+      <path value="$PROJECT_DIR$/z2/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/z2/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/z2/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/z2/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/z2/vendor/endroid/qr-code" />
+      <path value="$PROJECT_DIR$/z2/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/z2/vendor/paragonie/constant_time_encoding" />
+      <path value="$PROJECT_DIR$/z2/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/z2/vendor/dasprid/enum" />
+      <path value="$PROJECT_DIR$/z2/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/z2/vendor/robthree/twofactorauth" />
+      <path value="$PROJECT_DIR$/z2/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/z2/vendor/google/apiclient-services" />
+      <path value="$PROJECT_DIR$/z2/vendor/phpseclib/phpseclib" />
+      <path value="$PROJECT_DIR$/z2/vendor/google/auth" />
+      <path value="$PROJECT_DIR$/z2/vendor/google/apiclient" />
+      <path value="$PROJECT_DIR$/z2/vendor/composer" />
+      <path value="$PROJECT_DIR$/z2/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/z2/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/z2/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/z2/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/z2/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/z2/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/z2/vendor/zircote/swagger-php" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.2">
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.4">
     <option name="suggestChangeDefaultLanguageLevel" value="false" />
   </component>
   <component name="PhpStanOptionsConfiguration">
@@ -45,6 +75,7 @@
   </component>
   <component name="PhpUnit">
     <phpunit_settings>
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/z2/vendor/autoload.php" />
       <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/z1/vendor/autoload.php" />
     </phpunit_settings>
   </component>
