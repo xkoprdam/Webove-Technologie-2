@@ -112,6 +112,7 @@ switch ($method) {
             ]);
             break;
         }
+        
         // Multiple laureates route: /laureates (JSON file upload)
         else if ($route[0] == 'laureates') {
             if (!isset($_FILES['jsonFile']) || $_FILES['jsonFile']['error'] !== UPLOAD_ERR_OK) {

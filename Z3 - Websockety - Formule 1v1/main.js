@@ -1,5 +1,3 @@
-// import { initializeGame } from './initializeGame.js';
-
 // DOM References
 const landing = document.getElementById('landing');
 const playBtn = document.getElementById('playBtn');
@@ -205,7 +203,7 @@ function showWaitingScreen() {
     `;
 }
 
-// Handle when another player joins
+// when another player joins
 function handlePlayerJoined(players) {
     if (isHost) {
         waitingInfo.innerHTML = `
@@ -213,12 +211,12 @@ function handlePlayerJoined(players) {
             Starting the race...
         `;
 
-        // Give a tiny delay before starting (just feels better)
+        // a tiny delay before starting
         setTimeout(() => {
             if (ws && ws.readyState === WebSocket.OPEN) {
                 ws.send(JSON.stringify({ type: 'startRace', raceId: currentRaceId }));
             }
-        }, 1500); // 1.5 seconds
+        }, 1500);
     }
 }
 
@@ -302,7 +300,7 @@ function initializeGame() {
 
     function drawPlayer(userName, playerState) {
         const img = playerImages[userName];
-        if (!img) return; // Optional: prevent drawing if image isn't assigned yet
+        if (!img) return; // prevent drawing if image isn't assigned yet
 
         ctx.save();
         ctx.translate(playerState.position.x, playerState.position.y);
@@ -329,15 +327,15 @@ function initializeGame() {
             '#555'
         );
 
-        // Draw inner track (grass) - ensuring positive radius
-        const innerRadius = Math.max(10, track.cornerRadius - track.innerMargin); // Never goes below 10
+        // Draw inner track (grass)
+        const innerRadius = Math.max(10, track.cornerRadius - track.innerMargin);
         drawRoundedRect(
             ctx,
             track.x + track.innerMargin,
             track.y + track.innerMargin,
             track.width - 2 * track.innerMargin,
             track.height - 2 * track.innerMargin,
-            innerRadius,  // Now guaranteed to be positive
+            innerRadius,
             '#2e8b57'
         );
 

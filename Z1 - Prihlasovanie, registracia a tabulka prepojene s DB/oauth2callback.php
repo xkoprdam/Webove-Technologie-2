@@ -58,7 +58,7 @@ if (isset($_GET['code'])) {
     $_SESSION['refresh_token'] = $client->getRefreshToken();
     $_SESSION['loggedin'] = true;  // User is logged in / authenticated - set custom session variable.
 
-    // TODO: Implement a mechanism to save login information - user_id, login_type, email, fullname - to database.
+    // zadanie: Implement a mechanism to save login information - user_id, login_type, email, fullname - to database.
     $pdo = connectDatabase($hostname, $database, $username, $password);
 
     $client->setAccessToken($_SESSION['access_token']);
@@ -75,13 +75,13 @@ if (isset($_GET['code'])) {
     $_SESSION["login_type"] = 'gmail';
 
 
-    // STEP 1: Check if user already exists in 'users' table
+    // Check if user already exists in 'users' table
     $stmt = $pdo->prepare("SELECT google_id FROM google_users WHERE google_id = :id");
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
     $stmt->execute();
     $userExists = $stmt->fetch();
 
-    // STEP 2: If user does not exist, insert into 'users' table
+    // If user does not exist, insert into 'users' table
     if (!$userExists) {
         $stmt = $pdo->prepare("INSERT INTO google_users (google_id, email, fullname, created_at) VALUES (:id, :email, :fullname, NOW())");
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
@@ -90,7 +90,7 @@ if (isset($_GET['code'])) {
         $stmt->execute();
     }
 
-    // STEP 3: Insert login record into 'users_login' table
+    // Insert login record into 'users_login' table
     $stmt = $pdo->prepare("INSERT INTO google_users_login (google_id, email, fullname, login_time) 
                            VALUES (:id, :email, :fullname, NOW())");
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
@@ -106,7 +106,8 @@ if (isset($_GET['code'])) {
     $redirect_uri = 'https://node65.webte.fei.stuba.sk/z1/restricted.php'; // Redirect to the restricted page or dashboard.
     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
 }
-// An error response e.g. error=access_denied
+
+// error response
 if (isset($_GET['error'])) {
     echo "Error: " . $_GET['error'];
 }

@@ -121,6 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+
 <!-- Navbar -->
 <nav class="bg-gray-800 p-4 shadow-md dark:bg-gray-950">
     <div class="max-w-7xl mx-auto flex justify-between items-center">

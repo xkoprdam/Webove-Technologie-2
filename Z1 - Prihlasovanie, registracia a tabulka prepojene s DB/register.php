@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 2rem;
             border-radius: 0.5rem;
             max-width: 90%;
-            width: 450px; /* Slightly wider to accommodate inline elements */
+            width: 450px; /* Slightly wider to fit inline elements */
             position: relative;
             text-align: center;
         }
@@ -198,7 +198,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endif; ?>
 
         <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post" id="registrationForm">
-            <!-- Form fields remain the same -->
             <div class="mb-4">
                 <label for="firstname" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Meno:</label>
                 <input type="text" class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 <?php echo isset($errors['firstname']) ? 'border-red-500' : ''; ?>"
@@ -261,7 +260,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php endif; ?>
 
 <script>
-    // Dark Mode Toggle Functionality (unchanged)
+    // Dark Mode Toggle Functionality
     const htmlElement = document.documentElement;
     const darkModeToggle = document.getElementById('darkModeToggle');
     const sunIcon = document.getElementById('sunIcon');

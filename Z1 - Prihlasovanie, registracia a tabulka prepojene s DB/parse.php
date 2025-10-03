@@ -29,7 +29,7 @@ function insertLaureate($db, $name, $surname, $organisation, $sex, $birth_year, 
             return $laureate['id'];  // Return existing laureate ID
         }
 
-        // If laureate does not exist, insert them
+        // If laureate does not exist, insert
         $stmt = $db->prepare("INSERT INTO laureates (fullname, sex, birth_year, death_year, country) VALUES (:fullname, :sex, :birth_year, :death_year, :country)");
         $stmt->bindParam(':fullname', $fullname, PDO::PARAM_STR);
         // only for peace nobels
@@ -49,7 +49,7 @@ function insertLaureate($db, $name, $surname, $organisation, $sex, $birth_year, 
             return $laureate['id'];  // Return existing laureate ID
         }
 
-        // If laureate does not exist, insert them
+        // If laureate does not exist, insert
         $stmt = $db->prepare("INSERT INTO laureates (organisation, sex, birth_year, death_year, country) VALUES (:organisation, :sex, :birth_year, :death_year, :country)");
         $stmt->bindParam(':organisation', $organisation, PDO::PARAM_STR);
         $stmt->bindParam(':sex', $sex, PDO::PARAM_STR);
@@ -80,7 +80,7 @@ function insertDetails($db, $language_sk, $language_en, $genre_sk, $genre_en) {
         return $details['id'];  // Return existing details ID
     }
 
-    // If details do not exist, insert them
+    // If details do not exist, insert
     $stmt = $db->prepare("INSERT INTO prize_details (language_sk, language_en, genre_sk, genre_en) VALUES (:language_sk, :language_en, :genre_sk, :genre_en)");
     $stmt->bindParam(':language_sk', $language_sk, PDO::PARAM_STR);
     $stmt->bindParam(':language_en', $language_en, PDO::PARAM_STR);
@@ -133,13 +133,11 @@ function bindPrizes($db, $laureate_id, $prize_id) {
     return processStatement($stmt);
 }
 
-//function insertRow($db, $year, $category, $name, $surname, $organisation, $sex, $birth_year, $death_year, $country, $contribution_sk, $contribution_en, $language_sk = NULL, $language_en = NULL, $genre_sk = NULL, $genre_en = NULL) {
 function insertRow($db, $year, $category, $name, $surname, $sex, $birth_year, $death_year, $country, $contribution_sk, $contribution_en, $language_sk = NULL, $language_en = NULL, $genre_sk = NULL, $genre_en = NULL) {
     $db->beginTransaction();
 
     // Get or insert laureate
     $laureate_id = insertLaureate($db, $name, $surname, NULL,  $sex, $birth_year, $death_year, $country);
-//    $laureate_id = insertLaureate($db, $name, $surname, $organisation,  $sex, $birth_year, $death_year, $country);
 
     if (!$laureate_id) {
         $db->rollBack();
@@ -156,7 +154,6 @@ function insertRow($db, $year, $category, $name, $surname, $sex, $birth_year, $d
     }
 
     // Get or insert prize
-//    $prize_id = insertPrize($db, $year, $category, $contribution_sk, $contribution_en, $details_id);
     $prize_id = insertPrize($db, $year, $category, $contribution_sk, $contribution_en, NULL);
     if (!$prize_id) {
         $db->rollBack();
@@ -192,9 +189,6 @@ function parseCSV($db, $filename) {
 
     while (($row = fgetcsv($handle, 0, ";")) !== FALSE) {
         $data[] = array_filter($row);  // push only non-empty values
-//        echo "<pre>";
-//        print_r($row);
-//        echo "</pre>";
         insertRow($db, $row[0], 'chémia', $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7], $row[8], $row[9], $row[10], $row[11], $row[12]);
     }
     fclose($handle);

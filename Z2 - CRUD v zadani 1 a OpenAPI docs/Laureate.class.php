@@ -46,6 +46,7 @@ class Laureate {
      *     )
      * )
      */
+
     public function index() {
         $stmt = $this->db->prepare("SELECT * FROM laureates");
         try {
@@ -99,6 +100,7 @@ class Laureate {
      *     )
      * )
      */
+
     public function show($id) {
         $stmt = $this->db->prepare("SELECT * FROM laureates WHERE id = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -146,6 +148,7 @@ class Laureate {
      *     )
      * )
      */
+
     public function getId($fullname, $organisation) {
         $stmt = $this->db->prepare("SELECT id FROM laureates 
                                     WHERE fullname = :fullname OR organisation = :organisation LIMIT 1");
@@ -213,6 +216,7 @@ class Laureate {
      *     )
      * )
      */
+
     public function indexPrizes($category = null, $year = null, $country = null) {
         $query = "SELECT 
                 l.id AS laureate_id,
@@ -291,6 +295,7 @@ class Laureate {
      *     )
      * )
      */
+
     public function store($sex, $birth_year, $death_year, $country, $fullname = null, $organisation = null) {
         $stmt = $this->db->prepare("INSERT INTO laureates (fullname, organisation, sex, birth_year, death_year, country) VALUES (:fullname, :organisation, :sex, :birth_year, :death_year, :country)");
 
@@ -350,6 +355,7 @@ class Laureate {
      *     )
      * )
      */
+
     public function update($id, $fullname, $organisation, $sex, $birth_year, $death_year, $country) {
         if ($fullname == null && $organisation == null) {
             return "Error: Name or organisation name must be provided.";
@@ -408,6 +414,7 @@ class Laureate {
      *     )
      * )
      */
+    
     public function destroy($id) {
         try {
             $this->db->beginTransaction();

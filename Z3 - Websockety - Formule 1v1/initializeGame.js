@@ -16,28 +16,28 @@ export function initializeGame() {
 
     // Track dimensions - rectangular with rounded corners
     const track = {
-        x: 50,  // Reduced from 100 to make track wider (more space on sides)
-        y: 50,  // Reduced from 100 to make track wider (more space top/bottom)
-        width: canvas.width - 100,  // Increased from canvas.width - 200
-        height: canvas.height - 100,  // Increased from canvas.height - 200
-        cornerRadius: 130,  // Increased from 80 for smoother corners
+        x: 50,
+        y: 50,
+        width: canvas.width - 100,
+        height: canvas.height - 100,
+        cornerRadius: 130,
         innerMargin: 80
     };
 
     const players = [
         {
-            x: track.x + 25,  // Placed near the left side (you can adjust as needed)
+            x: track.x + 25,                // Placed near the left side
             y: track.y + track.height / 2,  // Centered vertically on the track
-            angle: -Math.PI / 2,  // Facing right (towards the finish line)
+            angle: -Math.PI / 2,            // Facing right (towards the finish line)
             vx: 0,
             vy: 0,
             speed: 0,
             image: carImageRed
         },
         {
-            x: track.x + 25 + 25,  // Placed to the right of the red car
+            x: track.x + 25 + 25,           // Placed to the right of the red car
             y: track.y + track.height / 2,  // Centered vertically on the track
-            angle: -Math.PI / 2,  // Facing right
+            angle: -Math.PI / 2,            // Facing right
             vx: 0,
             vy: 0,
             speed: 0,
@@ -45,7 +45,7 @@ export function initializeGame() {
         }
     ];
 
-    // Define checkpoints (top, right, bottom, left)
+    // checkpoints (top, right, bottom, left)
     const checkpoints = [
         { x: canvas.width / 2 - 30, y: track.y + 10, width: 10, height: 60, id: "top" },
         { x: track.width - 20, y: canvas.height / 2 - 30, width: 60, height: 10, id: "right" },
@@ -53,7 +53,7 @@ export function initializeGame() {
         { x: track.x + 10, y: canvas.height / 2 - 30, width: 60, height: 10, id: "left" } // Finish line
     ];
 
-    // Add checkpoint tracking and lap count
+    // Added checkpoint tracking and lap count
     players.forEach(p => {
         p.checkpointsPassed = new Set();
         p.laps = 0;
@@ -109,18 +109,18 @@ export function initializeGame() {
         const outerTop = track.y;
         const outerBottom = track.y + track.height;
 
-        // Inner rectangle dimensions (using smaller innerMargin)
+        // Inner rectangle dimensions
         const innerLeft = track.x + track.innerMargin;
         const innerRight = track.x + track.width - track.innerMargin;
         const innerTop = track.y + track.innerMargin;
         const innerBottom = track.y + track.height - track.innerMargin;
 
-        // Check if point is outside outer track
+        // Check if a point is outside of outer track
         if (!isInRoundedRect(x, y, outerLeft, outerTop, outerRight, outerBottom, track.cornerRadius)) {
             return false;
         }
 
-        // Check if point is inside inner track (which would be off-track)
+        // Check if a point is outside of inner track
         if (isInRoundedRect(x, y, innerLeft, innerTop, innerRight, innerBottom, track.cornerRadius - track.innerMargin)) {
             return false;
         }
@@ -129,13 +129,13 @@ export function initializeGame() {
     }
 
     function isInRoundedRect(x, y, left, top, right, bottom, radius) {
-        // Check if point is in the center rectangle
+        // Check if a point is in the center rectangle
         if (x >= left + radius && x <= right - radius &&
             y >= top + radius && y <= bottom - radius) {
             return true;
         }
 
-        // Check if point is in the rounded corners
+        // Check if a point is in the rounded corners
         // Top-left corner
         if (x < left + radius && y < top + radius) {
             const dx = x - (left + radius);
@@ -206,7 +206,7 @@ export function initializeGame() {
             track.y + track.innerMargin,
             track.width - 2 * track.innerMargin,
             track.height - 2 * track.innerMargin,
-            innerRadius,  // Now guaranteed to be positive
+            innerRadius,
             '#2e8b57'
         );
 
@@ -416,5 +416,3 @@ export function initializeGame() {
     carImageBlue.onload = checkReady;
 }
 
-
-// module.exports = { initializeGame };

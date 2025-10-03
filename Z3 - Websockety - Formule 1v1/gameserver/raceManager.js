@@ -1,5 +1,5 @@
 const { v4: uuidv4 } = require('uuid');
-const WebSocket = require('ws'); // <== Needed if not imported elsewhere
+const WebSocket = require('ws');
 
 const carWidth = 20;
 const carHeight = 40;
@@ -225,7 +225,7 @@ function handleGameLogic(currentUserName, playerState, race, clients) {
                 console.log(`${currentUserName} rear-ended ${otherUserName}`);
                 playerState.velocity.x = 0;
                 playerState.velocity.y = 0;
-                playerState.frozenUntil = Date.now() + 1000; // 2 seconds
+                playerState.frozenUntil = Date.now() + 1000;
             }
         }
     }
@@ -340,8 +340,6 @@ function markPlayerFinished(currentUserName, race, clients) {
         }
     }
 }
-
-// module.exports = { createRace, joinRace, startRace, remoteInput };
 
 /**
  * Start the server-side fixed-tick game loop.

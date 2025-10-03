@@ -7,7 +7,7 @@ const races = new Map();
 function startServer(port) {
     const wss = new WebSocket.Server({ port });
 
-    // Kick off the server-side fixed-tick game loop
+    // the server-side fixed-tick game loop
     startGameLoop(clients, races);
 
     wss.on('connection', (ws) => {

@@ -1,5 +1,5 @@
 <?php
-include 'cookie.php'; // Ensure this file exists and handles cookie logic
+include 'cookie.php';
 session_start();
 
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
@@ -10,7 +10,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 // Check for dark mode cookie on page load
 $darkMode = isset($_COOKIE['darkMode']) ? $_COOKIE['darkMode'] === 'true' : false;
 ?>
-
 
 
 <!DOCTYPE html>

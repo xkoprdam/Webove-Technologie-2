@@ -14,7 +14,7 @@ class BulkMail extends Mailable
 
    public $template;
    public $contact;
-   protected $body; // zpracovaný HTML/text
+   protected $body; // spracovaný HTML/text
 
    /**
     * Create a new message instance.
@@ -24,7 +24,7 @@ class BulkMail extends Mailable
       $this->template = $template;
       $this->contact  = $contact;
 
-      // Nahraď placeholdery ve šabloně
+      // Nahradenie placeholderov v sablone
       $raw = $template->is_html
          ? $template->body_html
          : $template->body_text;

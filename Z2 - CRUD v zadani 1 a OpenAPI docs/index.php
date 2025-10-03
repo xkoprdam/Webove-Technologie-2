@@ -728,7 +728,7 @@ $darkMode = isset($_COOKIE['darkMode']) ? $_COOKIE['darkMode'] === 'true' : fals
                 };
 
                 $.ajax({
-                    url: 'https://node65.webte.fei.stuba.sk/z2/api/v0/laureate', // Fixed endpoint to match OpenAPI
+                    url: 'https://node65.webte.fei.stuba.sk/z2/api/v0/laureate',
                     method: 'POST',
                     data: JSON.stringify(formData),
                     contentType: 'application/json',
@@ -777,7 +777,7 @@ $darkMode = isset($_COOKIE['darkMode']) ? $_COOKIE['darkMode'] === 'true' : fals
             formData.append('jsonFile', fileInput.files[0]);
 
             $.ajax({
-                url: 'https://node65.webte.fei.stuba.sk/z2/api/v0/laureates', // Adjust endpoint if needed
+                url: 'https://node65.webte.fei.stuba.sk/z2/api/v0/laureates',
                 method: 'POST',
                 data: formData,
                 contentType: false,

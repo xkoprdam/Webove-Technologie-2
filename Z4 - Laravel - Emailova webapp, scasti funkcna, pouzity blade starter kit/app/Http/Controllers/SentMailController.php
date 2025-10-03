@@ -15,7 +15,7 @@ class SentMailController extends Controller
    {
       $query = SentMail::where('user_id', Auth::id());
 
-      // volitelné filtrování podle template nebo status
+      // volitelne filtrovánie podla template alebo status
       if ($request->filled('template_id')) {
          $query->where('template_id', $request->input('template_id'));
       }
@@ -32,20 +32,19 @@ class SentMailController extends Controller
 
    public function show(SentMail $sentMail)
    {
-      // Ověření vlastnictví
       abort_unless($sentMail->user_id === Auth::id(), 403);
       return view('sent-mails.show', compact('sentMail'));
    }
 
    /**
-    * Volitelná metoda pro „copy as new scheduled“
+    * Volitelna metoda pre „copy as new scheduled“
     */
    public function reschedule(SentMail $sentMail)
    {
       abort_unless($sentMail->user_id === Auth::id(), 403);
 
-      // Předvyplníme scheduled-mail form
-      $recipients = $sentMail->recipients;    // už to je array díky $casts
+      // prevyplnenie scheduled-mail form
+      $recipients = $sentMail->recipients;
       return redirect()
          ->route('scheduled-mails.create', [
             'template_id' => $sentMail->template_id,

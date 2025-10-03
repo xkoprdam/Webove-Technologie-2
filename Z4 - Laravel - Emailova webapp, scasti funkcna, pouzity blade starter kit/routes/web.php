@@ -13,9 +13,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/dashboard', function () {
-//    return view('dashboard');
-//})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/dashboard', [ContactController::class, 'index'])
    ->middleware(['auth', 'verified'])
@@ -32,8 +29,6 @@ Route::middleware('auth')->group(function () {
       ->only(['index', 'store', 'edit', 'update', 'destroy']);
 
    Route::resource('templates', TemplateController::class);
-//   Route::post('templates/{template}/send-now', [TemplateController::class, 'sendNow'])
-//      ->name('templates.sendNow');
    Route::post('templates/{template}/copy', [TemplateController::class, 'copy'])
       ->name('templates.copy');
 
@@ -43,11 +38,9 @@ Route::middleware('auth')->group(function () {
    Route::post('scheduled-mails/{scheduled_mail}/copy', [ScheduledMailController::class, 'copy'])
       ->name('scheduled-mails.copy');
 
-   // Historie odeslaných mailů
    Route::resource('sent-mails', SentMailController::class)
       ->only(['index','show']);
 
-   // Kopírovat jako nový naplánovaný
    Route::post('sent-mails/{sent_mail}/reschedule',
       [SentMailController::class,'reschedule'])
       ->name('sent-mails.reschedule');

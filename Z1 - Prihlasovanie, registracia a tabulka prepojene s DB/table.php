@@ -183,7 +183,7 @@ session_start(); // Start session to track login status
     let gridApi;
     document.addEventListener('DOMContentLoaded', () => {
         const gridDiv = document.querySelector('#nobelGrid');
-        gridApi = agGrid.createGrid(gridDiv, gridOptions); // Use createGrid instead of new Grid
+        gridApi = agGrid.createGrid(gridDiv, gridOptions);
     });
 
     // Apply filters based on dropdowns
